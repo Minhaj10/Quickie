@@ -3,6 +3,10 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const {
+  notFoundHandler,
+  errorHandler,
+} = require("./middlewares/common/errorHandler");
 
 const app = express();
 
@@ -37,6 +41,9 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 //routing setup
 
 //error handling
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 app.listen(process.env.PORT, () => {
   console.log(`Listening to port ${process.env.PORT}`);
