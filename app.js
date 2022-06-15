@@ -3,6 +3,8 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const loginRouter = require("./router/loginRouter");
+
 const {
   notFoundHandler,
   errorHandler,
@@ -39,6 +41,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 //routing setup
+
+app.use("/", loginRouter);
+// app.use("/users", userRouter);
+// app.use("/inbox", inboxRouter);
 
 //error handling
 
